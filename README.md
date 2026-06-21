@@ -5,3 +5,5 @@ Week 1: Python
 Week 2: Classical Machine Learning
 
 Week 3: Classification
+
+Week 4: Deep Learning
