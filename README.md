@@ -7,3 +7,5 @@ Week 2: Classical Machine Learning
 Week 3: Classification
 
 Week 4: Deep Learning
+
+Week 5: RNN
