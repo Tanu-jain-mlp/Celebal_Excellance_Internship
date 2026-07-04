@@ -9,3 +9,5 @@ Week 3: Classification
 Week 4: Deep Learning
 
 Week 5: RNN
+
+Week 6: AE and GAN
