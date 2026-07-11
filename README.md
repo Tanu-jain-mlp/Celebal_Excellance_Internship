@@ -11,3 +11,5 @@ Week 4: Deep Learning
 Week 5: RNN
 
 Week 6: AE and GAN
+
+Week 7:RAG and LLMs
