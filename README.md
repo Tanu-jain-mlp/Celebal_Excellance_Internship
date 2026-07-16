@@ -12,4 +12,6 @@ Week 5: RNN
 
 Week 6: AE and GAN
 
-Week 7:RAG and LLMs
+Week 7: RAG and LLMs
+
+Week 8: Agentic AI
