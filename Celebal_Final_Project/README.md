@@ -171,5 +171,33 @@ Celebal Technologies Internship Program
 
 ---
 
-## **Screenshots**
+## 📸 Project Screenshots
+
+### 🏠 Home Page
+
+![Home](screenshots/home.jpeg)
+
+---
+
+### 📊 Dashboard
+
+![Dashboard](screenshots/dashboard.jpeg)
+
+---
+
+### 🎯 Single Lead Prediction
+
+![Prediction](screenshots/prediction.jpeg)
+
+---
+
+### 📂 Batch Prediction
+
+![Batch Prediction](screenshots/Batch_prediction.jpeg)
+
+---
+
+### ℹ️ About Page
+
+![About](screenshots/about.jpeg)
 
