@@ -31,9 +31,13 @@ page = st.sidebar.radio(
 
 
 # Home Page
+# -------------------------------
+# Home Page
+# -------------------------------
 if page == "🏠 Home":
 
     st.title("🎯 AI-Powered Lead Scoring System")
+
     st.markdown("""
     ### Internship Project
 
@@ -41,24 +45,43 @@ if page == "🏠 Home":
 
     This project predicts the probability that a lead will convert into a customer using Machine Learning.
 
-    **Best Model:** XGBoost
+    ### 📌 Project Highlights
 
-    **Accuracy:** 85.17%
+    - Compared **6 Machine Learning models**
+    - Selected **LightGBM** as the final deployment model
+    - Interactive Streamlit Dashboard
+    - Single Lead Prediction
+    - Batch Prediction using CSV
+    - Business Insights & Feature Importance
 
-    **ROC-AUC:** 0.9187
+    ### 🏆 Best Model Performance
+
+    - **Model:** LightGBM
+    - **Accuracy:** **85.39%**
+    - **Precision:** **83.38%**
+    - **Recall:** **77.53%**
+    - **F1-Score:** **80.35%**
+    - **ROC-AUC:** **92.25%**
     """)
 
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Model", "XGBoost")
-    col2.metric("Accuracy", "85.17%")
-    col3.metric("ROC-AUC", "0.9187")
+    col1, col2, col3, col4 = st.columns(4)
 
-    st.success("✔ Model loaded successfully.")
+    col1.metric("Best Model", "LightGBM")
+    col2.metric("Accuracy", "85.39%")
+    col3.metric("F1 Score", "80.35%")
+    col4.metric("ROC-AUC", "92.25%")
 
+    st.success("✔ LightGBM model loaded successfully.")
+
+    st.info("""
+    **Objective:** Identify high-potential leads based on customer behavior and engagement,
+    enabling the sales team to prioritize leads more effectively and improve conversion rates.
+    """)
 
 # Placeholder Pages
 elif page == "📊 Dashboard":
     import matplotlib.pyplot as plt
+
     st.title("📊 Lead Analytics Dashboard")
     st.markdown("---")
 
@@ -72,7 +95,9 @@ elif page == "📊 Dashboard":
         options=df["Lead Category"].unique(),
         default=df["Lead Category"].unique()
     )
+
     filtered_df = df[df["Lead Category"].isin(selected_category)]
+
     if filtered_df.empty:
         st.warning("⚠️ Please select at least one Lead Category.")
         st.stop()
@@ -80,9 +105,9 @@ elif page == "📊 Dashboard":
     # KPI SECTION
     total_leads = len(filtered_df)
     converted = filtered_df["Converted"].sum()
-    not_converted = total_leads - converted
     conversion_rate = converted / total_leads * 100
     avg_score = filtered_df["Lead Score"].mean()
+
     st.subheader("Business Overview")
 
     c1, c2, c3, c4 = st.columns(4)
@@ -101,42 +126,55 @@ elif page == "📊 Dashboard":
     # CHARTS
 
     col1, col2 = st.columns(2)
+
     with col1:
         st.subheader("Lead Categories")
+
         category = filtered_df["Lead Category"].value_counts()
+
         fig, ax = plt.subplots(figsize=(6,4))
         ax.bar(category.index, category.values)
         plt.xticks(rotation=15)
+
         st.pyplot(fig)
 
     with col2:
         st.subheader("Conversion Distribution")
+
         conversion = (
-            filtered_df["Converted"].value_counts().reindex([0, 1], fill_value=0))
-        
+            filtered_df["Converted"]
+            .value_counts()
+            .reindex([0, 1], fill_value=0)
+        )
+
         labels = ["Not Converted", "Converted"]
+
         fig, ax = plt.subplots(figsize=(5,5))
+
         ax.pie(
             conversion.values,
             labels=labels,
             autopct="%1.1f%%",
             startangle=90
         )
+
         st.pyplot(fig)
+
     st.markdown("---")
 
     # LEAD SCORE DISTRIBUTION
+
     st.subheader("Lead Score Distribution")
 
     fig, ax = plt.subplots(figsize=(10,4))
 
     ax.hist(
-    filtered_df["Lead Score"],
-    bins=20,
-    edgecolor="black"
+        filtered_df["Lead Score"],
+        bins=20,
+        edgecolor="black"
     )
 
-    ax.set_title("Distribution of Lead Scores", fontsize=14)
+    ax.set_title("Distribution of Lead Scores")
     ax.set_xlabel("Lead Score")
     ax.set_ylabel("Number of Leads")
     ax.grid(axis="y", linestyle="--", alpha=0.5)
@@ -146,6 +184,7 @@ elif page == "📊 Dashboard":
     st.markdown("---")
 
     # TOP LEAD SOURCES
+
     col3, col4 = st.columns(2)
 
     with col3:
@@ -153,19 +192,16 @@ elif page == "📊 Dashboard":
         st.subheader("Top Lead Sources")
 
         source = (
-        filtered_df["Lead Source"]
-        .value_counts()
-        .head(10)
+            filtered_df["Lead Source"]
+            .value_counts()
+            .head(10)
         )
 
         fig, ax = plt.subplots(figsize=(7,4))
 
-        ax.barh(
-        source.index,
-        source.values
-        )
+        ax.barh(source.index, source.values)
 
-        ax.set_title("Top 10 Lead Sources", fontsize=14)
+        ax.set_title("Top 10 Lead Sources")
         ax.set_xlabel("Number of Leads")
         ax.set_ylabel("Lead Source")
         ax.grid(axis="x", linestyle="--", alpha=0.5)
@@ -173,42 +209,52 @@ elif page == "📊 Dashboard":
         st.pyplot(fig)
 
     with col4:
+
         st.subheader("Top Lead Origins")
+
         origin = (
             filtered_df["Lead Origin"]
             .value_counts()
         )
+
         fig, ax = plt.subplots(figsize=(7,4))
+
         ax.bar(origin.index, origin.values)
+
         plt.xticks(rotation=20)
+
         st.pyplot(fig)
 
     st.markdown("---")
 
     # FEATURE IMPORTANCE
 
-    st.subheader("Top 15 Important Features")
+    st.subheader("Top 15 Important Features (LightGBM)")
+
     st.image(
-    "../outputs/figures/feature_importance.png",
-    use_container_width=True
+        "../outputs/figures/feature_importance.png",
+        use_container_width=True
     )
+
     st.markdown("---")
 
     # BUSINESS INSIGHTS
 
     st.subheader("Business Insights")
+
     st.success(f"""
-    ✔ Total Leads Analysed : {total_leads}
+✔ Total Leads Analysed : {total_leads}
 
-    ✔ Converted Customers : {converted}
+✔ Converted Customers : {converted}
 
-    ✔ Average Lead Score : {avg_score:.2f}
+✔ Average Lead Score : {avg_score:.2f}
 
-    ✔ Current Conversion Rate : {conversion_rate:.2f}%
+✔ Current Conversion Rate : {conversion_rate:.2f}%
 
-    ✔ Highest Priority Leads are classified as **Hot Leads**.
-    """)
-    
+✔ Feature Importance is generated using the **LightGBM** model.
+
+✔ Highest Priority Leads are classified as **Hot Leads**.
+""")
 
 elif page == "🎯 Predict Lead":
 
@@ -441,13 +487,17 @@ elif page == "ℹ️ About":
 
     st.title("ℹ️ About This Project")
     st.markdown("---")
+
     st.header("🎯 Project Overview")
+
     st.write("""
 This project was developed as part of the **Celebal Technologies Internship Program**.
 
 The objective is to help **X Education** identify high-potential leads using Machine Learning so that the sales team can focus on customers who are more likely to convert.
 
-Instead of contacting every lead equally, the system predicts the probability of conversion and assigns a Lead Score from **0–100**.
+Instead of contacting every lead equally, the system predicts the probability of conversion and assigns a **Lead Score (0–100)** to every lead.
+
+After comparing multiple machine learning algorithms, **LightGBM** was selected as the final deployment model due to its excellent overall performance.
 """)
 
     st.markdown("---")
@@ -462,7 +512,7 @@ Target Conversion Rate : **~80%**
 Challenge:
 - Thousands of leads generated every month
 - Sales team wastes time on low-quality leads
-- Need to prioritize Hot Leads automatically
+- Need to prioritize high-potential leads automatically
 """)
 
     st.markdown("---")
@@ -478,19 +528,21 @@ Challenge:
 
 ✔ Feature Engineering
 
-✔ Exploratory Data Analysis
+✔ Exploratory Data Analysis (EDA)
 
 ✔ One-Hot Encoding
 
-✔ Standard Scaling
+✔ Feature Scaling
 
 ✔ Model Training
 
 ✔ Model Evaluation
 
+✔ Feature Importance Analysis
+
 ✔ Lead Score Generation
 
-✔ Dashboard Deployment
+✔ Streamlit Dashboard Deployment
 """)
 
     st.markdown("---")
@@ -502,29 +554,62 @@ Challenge:
         "Model":[
             "Logistic Regression",
             "Random Forest",
-            "XGBoost"
+            "Tuned Random Forest",
+            "XGBoost",
+            "SVM",
+            "LightGBM"
         ],
 
         "Accuracy":[
             0.831,
             0.846,
-            0.852
+            0.846,
+            0.851,
+            0.852,
+            0.854
+        ],
+
+        "Precision":[
+            0.792,
+            0.817,
+            0.814,
+            0.821,
+            0.832,
+            0.834
+        ],
+
+        "F1 Score":[
+            0.776,
+            0.795,
+            0.795,
+            0.803,
+            0.801,
+            0.803
         ],
 
         "ROC-AUC":[
             0.906,
             0.914,
-            0.919
+            0.923,
+            0.918,
+            0.913,
+            0.922
         ]
 
     })
 
     st.dataframe(performance, use_container_width=True)
-    st.success("🏆 Final Selected Model : XGBoost")
+
+    st.success("🏆 Final Selected Model : LightGBM")
+
     st.markdown("---")
+
     st.header("🛠 Technologies Used")
+
     col1, col2 = st.columns(2)
+
     with col1:
+
         st.write("""
 - Python
 - Pandas
@@ -536,7 +621,7 @@ Challenge:
     with col2:
 
         st.write("""
-- XGBoost
+- LightGBM
 - Streamlit
 - Joblib
 - Google Colab
@@ -548,33 +633,43 @@ Challenge:
     st.header("📂 Dataset Information")
 
     st.write("""
-Dataset : X Education Lead Scoring Dataset
+**Dataset:** X Education Lead Scoring Dataset
 
-Records : 9,240
+**Records:** 9,240
 
-Features Used : 16
+**Features Used:** 16
 
-Target Variable : Converted (0 = Not Converted, 1 = Converted)
+**Target Variable:** Converted (0 = Not Converted, 1 = Converted)
 
-Final Outputs:
-- Lead Score
-- Lead Category
+**Final Outputs:**
+- Lead Score (0–100)
+- Lead Category (Hot / Warm / Cold)
 - Conversion Prediction (Converted / Not Converted)
-- Conversion Probability (in %)
+- Conversion Probability (%)
 """)
 
     st.markdown("---")
+
     st.header("🏆 Key Features")
+
     st.success("""
 ✔ Interactive Dashboard
-✔ Lead Prediction
+
+✔ Single Lead Prediction
+
 ✔ Batch Prediction
+
 ✔ Lead Score Generation
-✔ Feature Importance
+
+✔ Feature Importance Analysis
+
 ✔ Business Insights
+
 ✔ Download Prediction Results
 """)
+
     st.markdown("---")
+
     st.caption(
-        "Developed as part of the Celebal Technologies Internship Program | AI-Powered Lead Scoring System"
+        "Developed as part of the Celebal Technologies Internship Program | AI-Powered Lead Scoring System using LightGBM"
     )
