@@ -98,22 +98,28 @@ Celebal_Final_Project/
 │   ├── app.py
 │   └── requirements.txt
 │
+├── data/
+│
 ├── models/
 │   └── lead_scoring_model.pkl
 │
 ├── notebook/
-│   └── Lead_Scoring.ipynb
+│   └── Lead_Scoring_Project.ipynb
 │
 ├── outputs/
 │   ├── Lead_Scoring_Final_Output.csv
 │   └── figures/
 │       └── feature_importance.png
 │
-├── data/
+├── screenshots/
+│   ├── home.png
+│   ├── dashboard.png
+│   ├── prediction.png
+│   ├── Batch_prediction.png
+│   └── about.png
 │
-└── README.md
+├── README.md
 ```
-
 ---
 
 ## ⚙️ Technologies Used
