@@ -189,6 +189,8 @@ Celebal Technologies Internship Program
 
 ![Dashboard](screenshots/dashboard.jpeg)
 
+![Dashboard](screenshots/dash2.jpeg)
+
 ---
 
 ### 🎯 Single Lead Prediction
