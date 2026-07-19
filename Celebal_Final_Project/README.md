@@ -60,7 +60,7 @@ The following models were implemented and compared:
 - XGBoost
 - LightGBM
 
-After evaluating all models, **LightGBM** was selected as the final deployment model due to its strong overall predictive performance.
+After evaluating all models, **XGBoost** was selected as the final deployment model due to its strong overall predictive performance.
 
 ---
 
@@ -70,10 +70,10 @@ After evaluating all models, **LightGBM** was selected as the final deployment m
 |--------|---------:|----------:|--------:|---------:|---------:|
 | Logistic Regression | 83.06% | 79.21% | 75.98% | 77.56% | 90.56% |
 | Random Forest | 84.63% | 81.66% | 77.53% | 79.54% | 91.44% |
-| Tuned Random Forest | 84.58% | 81.44% | 77.67% | 79.51% | 92.30% |
+| Tuned Random Forest | 84.74% | 81.80% | 77.67% | 79.68% | 92.15% |
 | SVM | 85.23% | 83.21% | 77.25% | 80.12% | 91.32% |
-| XGBoost | 85.12% | 82.09% | 78.51% | 80.26% | 91.82% |
-| **LightGBM** | **85.39%** | **83.38%** | **77.53%** | **80.35%** | **92.25%** |
+| **XGBoost** | **85.12%** | **82.37%** | **78.09%** | **80.17%** | **92.35%** |
+| LightGBM | 84.90% | 81.15% | 79.21% | 80.17% | 92.20% |
 
 ---
 
