@@ -41,37 +41,33 @@ if page == "🏠 Home":
     st.markdown("""
     ### Internship Project
 
-    **Company:** X Education
+**Company:** X Education
 
     This project predicts the probability that a lead will convert into a customer using Machine Learning.
 
-    ### 📌 Project Highlights
+### 📌 Project Highlights
 
-    - Compared **6 Machine Learning models**
-    - Selected **LightGBM** as the final deployment model
-    - Interactive Streamlit Dashboard
-    - Single Lead Prediction
-    - Batch Prediction using CSV
-    - Business Insights & Feature Importance
+- Compared **6 Machine Learning models**
+- Selected **XGBoost** as the final deployment model
 
-    ### 🏆 Best Model Performance
+...
 
-    - **Model:** LightGBM
-    - **Accuracy:** **85.39%**
-    - **Precision:** **83.38%**
-    - **Recall:** **77.53%**
-    - **F1-Score:** **80.35%**
-    - **ROC-AUC:** **92.25%**
+- **Model:** XGBoost
+- **Accuracy:** **85.12%**
+- **Precision:** **82.37%**
+- **Recall:** **78.09%**
+- **F1-Score:** **80.17%**
+- **ROC-AUC:** **92.35%**
     """)
 
     col1, col2, col3, col4 = st.columns(4)
 
-    col1.metric("Best Model", "LightGBM")
-    col2.metric("Accuracy", "85.39%")
-    col3.metric("F1 Score", "80.35%")
-    col4.metric("ROC-AUC", "92.25%")
+    col1.metric("Best Model", "XGBoost")
+    col2.metric("Accuracy", "85.12%")
+    col3.metric("F1 Score", "80.17%")
+    col4.metric("ROC-AUC", "92.35%")
 
-    st.success("✔ LightGBM model loaded successfully.")
+    st.success("✔ XGBoost model loaded successfully.")
 
     st.info("""
     **Objective:** Identify high-potential leads based on customer behavior and engagement,
@@ -229,7 +225,7 @@ elif page == "📊 Dashboard":
 
     # FEATURE IMPORTANCE
 
-    st.subheader("Top 15 Important Features (LightGBM)")
+    st.subheader("Top 15 Important Features (XGBoost)")
 
     st.image(
         "../outputs/figures/feature_importance.png",
@@ -251,7 +247,7 @@ elif page == "📊 Dashboard":
 
 ✔ Current Conversion Rate : {conversion_rate:.2f}%
 
-✔ Feature Importance is generated using the **LightGBM** model.
+✔ Feature Importance is generated using the **XGBoost** model.
 
 ✔ Highest Priority Leads are classified as **Hot Leads**.
 """)
@@ -497,7 +493,7 @@ The objective is to help **X Education** identify high-potential leads using Mac
 
 Instead of contacting every lead equally, the system predicts the probability of conversion and assigns a **Lead Score (0–100)** to every lead.
 
-After comparing multiple machine learning algorithms, **LightGBM** was selected as the final deployment model due to its excellent overall performance.
+After comparing multiple machine learning algorithms, **XGBoost** was selected as the final deployment model because it achieved the highest ROC-AUC while maintaining an excellent balance between Accuracy, Precision, Recall, and F1-Score..
 """)
 
     st.markdown("---")
@@ -551,56 +547,65 @@ Challenge:
 
     performance = pd.DataFrame({
 
-        "Model":[
-            "Logistic Regression",
-            "Random Forest",
-            "Tuned Random Forest",
-            "XGBoost",
-            "SVM",
-            "LightGBM"
-        ],
+    "Model":[
+        "Logistic Regression",
+        "Random Forest",
+        "Tuned Random Forest",
+        "XGBoost",
+        "SVM",
+        "LightGBM"
+    ],
 
-        "Accuracy":[
-            0.831,
-            0.846,
-            0.846,
-            0.851,
-            0.852,
-            0.854
-        ],
+    "Accuracy":[
+        0.831,
+        0.846,
+        0.847,
+        0.851,
+        0.852,
+        0.849
+    ],
 
-        "Precision":[
-            0.792,
-            0.817,
-            0.814,
-            0.821,
-            0.832,
-            0.834
-        ],
+    "Precision":[
+        0.792,
+        0.817,
+        0.818,
+        0.824,
+        0.832,
+        0.812
+    ],
 
-        "F1 Score":[
-            0.776,
-            0.795,
-            0.795,
-            0.803,
-            0.801,
-            0.803
-        ],
+    "Recall":[
+        0.760,
+        0.775,
+        0.777,
+        0.781,
+        0.772,
+        0.792
+    ],
 
-        "ROC-AUC":[
-            0.906,
-            0.914,
-            0.923,
-            0.918,
-            0.913,
-            0.922
-        ]
+    "F1 Score":[
+        0.776,
+        0.795,
+        0.797,
+        0.802,
+        0.801,
+        0.802
+    ],
 
-    })
+    "ROC-AUC":[
+        0.906,
+        0.914,
+        0.921,
+        0.923,
+        0.913,
+        0.922
+    ]
+
+})
 
     st.dataframe(performance, use_container_width=True)
 
-    st.success("🏆 Final Selected Model : LightGBM")
+    st.success("🏆 Final Selected Model : XGBoost")
 
     st.markdown("---")
 
@@ -621,7 +626,7 @@ Challenge:
     with col2:
 
         st.write("""
-- LightGBM
+- XGBoost
 - Streamlit
 - Joblib
 - Google Colab
@@ -671,5 +676,5 @@ Challenge:
     st.markdown("---")
 
     st.caption(
-        "Developed as part of the Celebal Technologies Internship Program | AI-Powered Lead Scoring System using LightGBM"
+        "Developed as part of the Celebal Technologies Internship Program | AI-Powered Lead Scoring System using XGBoost"
     )
