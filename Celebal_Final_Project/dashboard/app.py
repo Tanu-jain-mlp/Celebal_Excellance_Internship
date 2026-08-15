@@ -11,9 +11,9 @@ st.set_page_config(
 )
 
 # Load Model
-MODEL_PATH = "../models/lead_scoring_model.pkl"
+MODEL_PATH = "Celebal_Final_Project/models/lead_scoring_model.pkl"
 model = joblib.load(MODEL_PATH)
-data = pd.read_csv("../outputs/Lead_Scoring_Final_Output.csv")
+data = pd.read_csv("Celebal_Final_Project/outputs/Lead_Scoring_Final_Output.csv")
 
 
 # Sidebar
@@ -82,7 +82,7 @@ elif page == "📊 Dashboard":
     st.markdown("---")
 
     # Load Data
-    df = pd.read_csv("../outputs/Lead_Scoring_Final_Output.csv")
+    df = pd.read_csv("Celebal_Final_Project/outputs/Lead_Scoring_Final_Output.csv")
 
     # Sidebar Filters
     st.sidebar.subheader("Dashboard Filters")
@@ -228,7 +228,7 @@ elif page == "📊 Dashboard":
     st.subheader("Top 15 Important Features (XGBoost)")
 
     st.image(
-        "../outputs/figures/feature_importance.png",
+        "Celebal_Final_Project/outputs/figures/feature_importance.png",
         use_container_width=True
     )
 
